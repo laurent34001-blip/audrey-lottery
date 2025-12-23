@@ -7,7 +7,6 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -24,8 +23,8 @@ model LotteryResult {
   id        String   @id @default(uuid())
   date      DateTime @unique
   redGame   String   // 2-digit number
-  greenGame String   // 2-digit number
-  blueGame  String   // 2-digit number
+  blueGame  String   @map("greenGame") // 2-digit number (mapped to greenGame column)
+  blackGame String   @map("blueGame")  // 2-digit number (mapped to blueGame column)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
