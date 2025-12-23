@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useSession } from "next-auth/react"
+import { useSession, signOut } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
@@ -315,7 +315,7 @@ export default function ResultsPage() {
                 👋 {session?.user?.name || session?.user?.email}
               </span>
               <button
-                onClick={() => router.push("/api/auth/signout")}
+                onClick={() => signOut({ callbackUrl: "/login" })}
                 className="bg-gradient-to-r from-red-500 to-pink-600 text-white px-2 md:px-4 py-1.5 md:py-2 rounded-lg hover:from-red-600 hover:to-pink-700 transition-all shadow-md hover:shadow-lg font-medium text-xs md:text-sm"
               >
                 Déconnexion
